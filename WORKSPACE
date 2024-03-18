@@ -52,3 +52,17 @@ xla_workspace0()
 
 load("//third_party/flatbuffers:workspace.bzl", flatbuffers = "repo")
 flatbuffers()
+
+load(
+    "@tsl//third_party/gpus/cuda:hermetic_cuda_init_redist_json_repository.bzl",
+    "hermetic_cuda_redist_json_workspace",
+)
+
+hermetic_cuda_redist_json_workspace()
+
+load(
+    "@tsl//third_party/gpus/cuda:hermetic_cuda_init_repositories.bzl",
+    "hermetic_cuda_workspace",
+)
+
+hermetic_cuda_workspace()

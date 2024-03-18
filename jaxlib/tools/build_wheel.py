@@ -225,7 +225,9 @@ def prepare_wheel(sources_path: pathlib.Path, *, cpu, skip_gpu_kernels):
   if exists(f"__main__/jaxlib/cuda/_solver.{pyext}") and not skip_gpu_kernels:
     copy_runfiles(
         dst_dir=jaxlib_dir / "cuda" / "nvvm" / "libdevice",
-        src_files=["local_config_cuda/cuda/cuda/nvvm/libdevice/libdevice.10.bc"],
+        src_files=[
+            "cuda_nvcc/nvvm/libdevice/libdevice.10.bc",
+        ],
     )
     copy_runfiles(
         dst_dir=jaxlib_dir / "cuda",

@@ -74,7 +74,7 @@ There are two ways to build `jaxlib` with CUDA support: (1) use
 support, or (2) use
 `python build/build.py --enable_cuda --build_gpu_plugin --gpu_plugin_cuda_version=12`
 to generate three wheels (jaxlib without cuda, jax-cuda-plugin,
-and jax-cuda-pjrt). You can set `gpu_plugin_cuda_version` to 11 or 12.
+and jax-cuda-pjrt). You can set `gpu_plugin_cuda_version` to 12.3.2.
 
 See `python build/build.py --help` for configuration options, including ways to
 specify the paths to CUDA and CUDNN, which you must have installed. Here
@@ -137,16 +137,11 @@ Once coreutils is installed, the realpath command should be present in your shel
 
 Once everything is installed. Open PowerShell, and make sure MSYS2 is in the
 path of the current session. Ensure `bazel`, `patch` and `realpath` are
-accessible. Activate the conda environment. The following command builds with
-CUDA enabled, adjust it to whatever suitable for you:
+accessible. Activate the conda environment. The following command builds JAX, 
+adjust it to whatever suitable for you:
 
 ```
 python .\build\build.py `
-  --enable_cuda `
-  --cuda_path='C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1' `
-  --cudnn_path='C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1' `
-  --cuda_version='10.1' `
-  --cudnn_version='7.6.5'
 ```
 
 To build with debug information, add the flag `--bazel_options='--copt=/Z7'`.

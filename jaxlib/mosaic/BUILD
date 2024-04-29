@@ -73,11 +73,13 @@ cc_library(
         "@xla//xla:array",
         "@xla//xla:shape_util",
         "@xla//xla:util",
+        "//util/gtl:flat_set",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/hash",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/status",
+        "@com_google_absl//absl/strings:string_view",
         "@com_google_absl//absl/types:span",
     ],
 )

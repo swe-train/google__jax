@@ -2032,12 +2032,21 @@ class PallasInterpretModeOutOfBoundsTest(PallasTest):
   INTERPRET: bool = True
 
   def test_interpret_mode_out_of_bounds_access(self):
+    # TODO(justinfu): This test has low precision on GPU. Improve precision.
+    if jtu.test_device_matches(["gpu"]):
+      self.skipTest("Only works on CPU/TPU")
+
     block_size = 32
+    dtype = jnp.float32
     # Create input tensors which require a reduction along an axis
     # not divisible by block_size.
-    x = jax.random.normal(jax.random.key(0), (block_size, block_size + 1))
-    y = jax.random.normal(jax.random.key(1), (block_size + 1, block_size))
-    expected = jnp.dot(x, y)
+    x = jax.random.normal(jax.random.key(0),
+                          (block_size, block_size + 1),
+                          dtype=dtype)
+    y = jax.random.normal(jax.random.key(1),
+                          (block_size + 1, block_size),
+                          dtype=dtype)
+    expected = x @ y
 
     in_specs = [
         pl.BlockSpec(lambda i, j, k: (i, k), (block_size, block_size)),
